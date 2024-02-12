@@ -134,7 +134,6 @@ public class HttpServer {
 
     }  
 
-
     /*
         * Metodo que resuelve la peticion de un texto plano
         * @param clientSocket socket del cliente
@@ -242,6 +241,12 @@ public class HttpServer {
 
     }
 
+
+    /*
+        * Metodo que resuelve un error 404
+        * @param clientSocket socket del cliente
+        * @throws IOException si hay un error en la conexion 
+     */
     private static void  resolverError(Socket clientSocket) throws IOException{
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         
@@ -262,6 +267,15 @@ public class HttpServer {
         out.close(); 
     }
 
+
+    /*
+        * Metodo que resuelve un controlador
+        * @param endPoint el endPoint que se va a resolver
+        * @param clientSocket socket del cliente
+        * @param mySparkController controlador de spark
+        * @param metodoHttp metodo http de la peticion
+        * @throws IOException si hay un error en la conexion
+     */
     public static void resolverController(String endPoint, Socket clientSocket, MySparkController mySparkController, String metodoHttp) throws IOException{
 
         try( PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)){
